@@ -8,6 +8,18 @@ export const App=() =>{
   const [token, setToken]=useState('');
   const[data, setData]=useState('');
 
+  const adatKeres=async()=>{
+    try{
+      const valasz=await axios.get(
+        'https://jwt.sulla.hu/termekek',
+        { headers: {Authorization:`Bearer ${token}`}});
+        setData(valasz.data);
+    }
+    catch(error){
+      console.log('Hiba az adatlekésében: ', error)
+    }
+  }
+
 const loginKezelo=async()=>{
   try{
     const valasz=await axios.post(
